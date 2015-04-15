@@ -1,9 +1,7 @@
 from django.conf.urls import patterns, include, url
 from . import views
-from .views import getTopPhotos
+from .views import topPhotos
 
-
-urlpatterns = patterns('',
-    url(r'^$', getTopPhotos, name='topphotos'),
-    # url(r'^$', ImageListView.as_view(), name='home'),
-)
+urlpatterns = [
+    url(r'^$', topPhotos, name='index'),
+]
