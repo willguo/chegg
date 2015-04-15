@@ -3,7 +3,7 @@ from django.shortcuts import render
 import json
 import urllib
 import os
-import sqlite
+# import sqlite
 import sqlite3
 
 from django.http import HttpResponse, Http404
@@ -55,7 +55,11 @@ def topPhotos(request):
 
 	# Save to sqlite3 database.
 	# cursor.execute('insert into File (id, url_list_store, url_list) values (?,?,?)', (id, name, sqlite3.Binary(file.read())))
-	url_list.save()
 	
+	# conn = sqlite3.connect('/path/to/your/sqlite_file.db')
+	# c = conn.cursor()
+	# for item in my_list:
+	# c.execute('insert into tablename values (?,?,?)', item)
+
 	context = {'url_list': url_list}
 	return render(request, 'topten/index.html', context)
