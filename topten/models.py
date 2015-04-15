@@ -1,8 +1,6 @@
 import datetime
 from django.utils import timezone
 from django.db import models
-# import flickr_api
-# flickr_api.set_keys(api_key = '40128fd9fbc72810e808909f7f24bc83', api_secret = 'eeefb11ba8ea31e8')
 
 # Create your models here.
 
@@ -20,3 +18,10 @@ class Photo(models.Model):
 	owner = models.ForeignKey(FlickrUser)
 	def __str__(self):
 		return self.photo_title
+
+# class FlickrUser(models.Model):
+#     username = models.CharField(max_length = 200)
+#     user_id = models.CharField(max_length = 200)
+#     # votes = models.IntegerField(default = 0)
+#     def __str__(self):
+#     	return self.username
