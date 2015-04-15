@@ -2,6 +2,9 @@ from django.shortcuts import render
 
 import json
 import urllib
+import os
+import sqlite
+import sqlite3
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render
@@ -32,7 +35,7 @@ def topPhotos(request):
 	"&per_page=" + per_page + \
 	"&page=" + pages + \
 	"&format=json&nojsoncallback=1"
-		
+
 	response = urllib.request.urlopen(topten_url)
 	str_response = response.readall().decode('utf-8')
 	
@@ -50,5 +53,9 @@ def topPhotos(request):
 		photo_url = "http://farm" + farm + ".staticflickr.com/" + server + "/" + photo_id + "_" + secret + "_b.jpg"
 		url_list.append(photo_url)
 
+	# Save to sqlite3 database.
+	# cursor.execute('insert into File (id, url_list_store, url_list) values (?,?,?)', (id, name, sqlite3.Binary(file.read())))
+	url_list.save()
+	
 	context = {'url_list': url_list}
 	return render(request, 'topten/index.html', context)
